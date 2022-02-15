@@ -1,4 +1,31 @@
 from itertools import product
+
+def imp(a, b):
+    """
+    Импликация двух высказываний ложна тогда и только тогда, когда из истинного высказывания следует ложное.
+    
+    +---+---+-------+
+    | A | B | A → B |
+    +---+---+-------+
+    | 0 | 0 |   1   |
+    | 0 | 1 |   1   |
+    | 1 | 0 |   0   |
+    | 1 | 1 |   1   |
+    +---+---+-------+
+    
+    Код:
+    
+    if a and not b:
+        return 0
+    return 1
+    
+    или
+    
+    return not a or b
+    """
+    return not a or b
+
+
 txt = """0	0	0	0
 0	0	1	1
 0	1	0	0
@@ -14,8 +41,10 @@ for elem in txt.split('\n'):
 print(check)
 
 n = 3 # количество переменных
+
+
 statement = "(¬x ∧ y ∧ z) ∨ (¬x ∧ ¬y ∧ z) ∨ (¬x ∧ ¬y ∧ ¬z)"
-log_operations = {'¬': " not ", '∧': " and ", '∨': " or ", '→': " !!! ", '≡': " == ", '⊻': '^', '⊕': '^'}  
+log_operations = {'¬': " not ", '∧': " and ", '∨': " or ", '→': "!", '≡': " == ", '⊻': '^', '⊕': '^'}  
 tbl = statement.maketrans(log_operations)
 expr_default = statement.translate(tbl)
 
